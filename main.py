@@ -1,13 +1,19 @@
+"""This module sets up the main game and event loop."""
+
 import sys
 
 import pygame
 
+from settings import Settings
+
 def run_game():
+    """Set up the game objects and event loop."""
     # Initialize game and create a screen object.
     pygame.init()
-    screen = pygame.display.set_mode((1200, 800))
-    pygame.display.set_caption("Simple Sideways Shooter")
-    bg_color = (230, 230, 230)
+    settings = Settings()
+    screen = pygame.display.set_mode(
+        (settings.display_width, settings.display_height))
+    pygame.display.set_caption(settings.display_caption)
 
     # Start event loop.
     while True:
@@ -17,7 +23,7 @@ def run_game():
                 sys.exit()
 
         # Redraw screen.
-        screen.fill(bg_color)
+        screen.fill(settings.display_color)
         
         # Make most recently drawn screen visible.
         pygame.display.flip()
