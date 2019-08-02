@@ -5,6 +5,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 def run_game():
     """Set up the game objects and event loop."""
@@ -15,6 +16,9 @@ def run_game():
         (settings.display_width, settings.display_height))
     pygame.display.set_caption(settings.display_caption)
 
+    # Create ship.
+    ship = Ship(screen)
+
     # Start event loop.
     while True:
         # Listen for keyboard and mouse events.
@@ -24,6 +28,7 @@ def run_game():
 
         # Redraw screen.
         screen.fill(settings.display_color)
+        ship.blitme()
         
         # Make most recently drawn screen visible.
         pygame.display.flip()
