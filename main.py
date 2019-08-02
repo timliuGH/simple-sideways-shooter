@@ -1,11 +1,10 @@
 """This module sets up the main game and event loop."""
 
-import sys
-
 import pygame
 
 from settings import Settings
 from ship import Ship
+import game_functions as gf
 
 def run_game():
     """Set up the game objects and event loop."""
@@ -21,16 +20,7 @@ def run_game():
 
     # Start event loop.
     while True:
-        # Listen for keyboard and mouse events.
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
-        # Redraw screen.
-        screen.fill(settings.display_color)
-        ship.blitme()
-        
-        # Make most recently drawn screen visible.
-        pygame.display.flip()
+        gf.check_events()
+        gf.update_screen(screen, settings, ship)
 
 run_game()
