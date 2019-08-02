@@ -20,7 +20,8 @@ def run_game():
 
     # Start event loop.
     while True:
-        gf.check_events()
+        gf.check_events(ship)
+        ship.move()
         gf.update_screen(screen, settings, ship)
 
 run_game()
