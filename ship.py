@@ -5,7 +5,7 @@ import pygame
 class Ship():
     """This is a model of a ship that shoots bullets."""
 
-    def __init__(self, screen):
+    def __init__(self, screen, settings):
         """Initialize the ship."""
         # Get game display and rocket image.
         self.screen = screen
@@ -19,16 +19,26 @@ class Ship():
         self.bmp_rect.centery = self.screen_rect.centery
         self.bmp_rect.left = self.screen_rect.left
 
-        # Movement flags
+        # Movement flags.
         self.moving_up = False
         self.moving_down = False
 
+        # Get ship settings.
+        self.ship_settings = settings
+
+        # Get ship's position in decimal form.
+        self.bmp_position = float(self.bmp_rect.centery)
+
     def move(self):
         """Move the ship based on movement flags."""
+        # Update ship's position, not the rect.
         if self.moving_up:
-            self.bmp_rect.centery -= 1
+            self.bmp_position -= self.ship_settings.ship_speed
         if self.moving_down:
-            self.bmp_rect.centery += 1
+            self.bmp_position += self.ship_settings.ship_speed
+
+        # Update rect from position
+        self.bmp_rect.centery = self.bmp_position
 
     def blitme(self):
         """Draw ship at current location."""
