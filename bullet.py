@@ -4,7 +4,7 @@ from pygame.sprite import Sprite
 class Bullet(Sprite):
     """A class to manage bullets fired from the ship."""
 
-    def __init__(Self, settings, screen, ship):
+    def __init__(self, settings, screen, ship):
         """Create a bullet object at ship's current position."""
         # Inherit from Sprite module
         super().__init__()
@@ -26,7 +26,7 @@ class Bullet(Sprite):
         self.color = settings.bullet_color
         self.speed = settings.bullet_speed
 
-    def move(self):
+    def update(self):
         """Move bullet from left to right across screen."""
         # Update the decimal position of the bullet.
         self.bullet_pos += self.speed

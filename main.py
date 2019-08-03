@@ -1,6 +1,7 @@
 """This module sets up the main game and event loop."""
 
 import pygame
+from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship
@@ -18,10 +19,14 @@ def run_game():
     # Create ship.
     ship = Ship(screen, settings)
 
+    # Make a group to hold ship's bullets.
+    bullets = Group()
+
     # Start event loop.
     while True:
-        gf.check_events(ship)
+        gf.check_events(screen, settings, ship, bullets)
         ship.move()
-        gf.update_screen(screen, settings, ship)
+        bullets.update()
+        gf.update_screen(screen, settings, ship, bullets)
 
 run_game()
