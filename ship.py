@@ -32,9 +32,9 @@ class Ship():
     def move(self):
         """Move the ship based on movement flags."""
         # Update ship's position, not the rect.
-        if self.moving_up:
+        if self.moving_up and self.bmp_rect.top > 0:
             self.bmp_position -= self.ship_settings.ship_speed
-        if self.moving_down:
+        if self.moving_down and self.bmp_rect.bottom < self.screen_rect.bottom:
             self.bmp_position += self.ship_settings.ship_speed
 
         # Update rect from position
