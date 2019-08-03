@@ -26,12 +26,7 @@ def run_game():
     while True:
         gf.check_events(screen, settings, ship, bullets)
         ship.move()
-        bullets.update()
-        # Get rid of bullets that have gone off-screen.
-        for bullet in bullets.copy():
-            if bullet.bullet_rect.right >= settings.display_width:
-                bullets.remove(bullet)
-
+        gf.update_bullets(bullets, settings)
         gf.update_screen(screen, settings, ship, bullets)
 
 run_game()
