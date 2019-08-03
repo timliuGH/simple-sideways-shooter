@@ -13,10 +13,15 @@ def keydown_event(screen, settings, ship, event, bullets):
     elif event.key == pygame.K_DOWN:
         ship.moving_down = True
     elif event.key == pygame.K_SPACE:
-        # Create a new bullet, if have enough ammo, in bullets group.
-        if len(bullets) < settings.ammo:
-            new_bullet = Bullet(settings, screen, ship)
-            bullets.add(new_bullet)
+        fire_bullet(settings, screen, ship, bullets)
+
+def fire_bullet(settings, screen, ship, bullets):
+    """Fire a bullet."""
+    # Create a new bullet, if have enough ammo, in bullets group.
+    if len(bullets) < settings.ammo:
+        new_bullet = Bullet(settings, screen, ship)
+        bullets.add(new_bullet)
+
 
 def keyup_event(ship, event):
     if event.key == pygame.K_UP:
